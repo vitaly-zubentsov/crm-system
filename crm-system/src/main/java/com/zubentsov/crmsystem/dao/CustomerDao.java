@@ -7,5 +7,7 @@ import com.zubentsov.crmsystem.entity.Customer;
 public interface CustomerDao {
 	
 	public  List<Customer> getCustomers(); 
+	
+	public void addCustomer(Customer customer);
 
 }
