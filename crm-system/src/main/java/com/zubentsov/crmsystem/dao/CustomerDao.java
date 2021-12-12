@@ -10,4 +10,6 @@ public interface CustomerDao {
 	
 	public void addCustomer(Customer customer);
 
+	public Customer getCustomer(int customerId);
+
 }

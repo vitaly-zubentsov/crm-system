@@ -47,5 +47,18 @@ public class CustomerController {
 		
 		return "redirect:/customer/list";
 	}
+	
+	@GetMapping("/updateCustomer")
+	public String showCustomerUpdateForm(@ModelAttribute("customerId") int customerId, Model model) {
+		
+		//get customer from DB
+		Customer customer = customerServise.getCustomer(customerId);
+		
+		//set customer as a model attribute to pre-populate the form
+		model.addAttribute("customer", customer);
+		
+		//send over to form
+		return "customer-form";
+	}
 
 }
