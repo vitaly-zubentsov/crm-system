@@ -45,7 +45,7 @@ public class CustomerController {
 		//add customer  to DB
 		customerServise.addCustomer(customer);
 		
-		return "list-customers";
+		return "redirect:/customer/list";
 	}
 
 }
