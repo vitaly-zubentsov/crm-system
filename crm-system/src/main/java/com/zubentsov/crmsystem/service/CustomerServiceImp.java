@@ -10,12 +10,12 @@ import com.zubentsov.crmsystem.dao.CustomerDao;
 import com.zubentsov.crmsystem.entity.Customer;
 
 @Service
-public class CustomerServiceImp  implements CustomerService {
+public class CustomerServiceImp implements CustomerService {
 
-	//inject customer DAO
-	@Autowired 
+	// inject customer DAO
+	@Autowired
 	private CustomerDao customerDao;
-	
+
 	@Override
 	@Transactional
 	public List<Customer> getCustomers() {
@@ -25,16 +25,22 @@ public class CustomerServiceImp  implements CustomerService {
 	@Override
 	@Transactional
 	public void addCustomer(Customer customer) {
+		
 		customerDao.addCustomer(customer);
 	}
 
 	@Override
 	@Transactional
 	public Customer getCustomer(int customerId) {
-		
+
 		return customerDao.getCustomer(customerId);
 	}
-	
-	
+
+	@Override
+	@Transactional
+	public void deleteCustomer(int customerId) {
+
+		customerDao.deleteCustomer(customerId);
+	}
 
 }

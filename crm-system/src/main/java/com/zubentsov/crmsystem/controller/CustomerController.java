@@ -60,5 +60,15 @@ public class CustomerController {
 		//send over to form
 		return "customer-form";
 	}
+	
+	@GetMapping("/deleteCustomer")
+	public String deleteCustomer(@ModelAttribute("customerId") int customerId) {
+		
+		//delete customer from DB
+		customerServise.deleteCustomer(customerId);
+		
+		//send over to form
+		return  "redirect:/customer/list";
+	}
 
 }
