@@ -25,7 +25,7 @@ public class CustomerServiceImp implements CustomerService {
 	@Override
 	@Transactional
 	public void addCustomer(Customer customer) {
-		
+
 		customerDao.addCustomer(customer);
 	}
 
@@ -41,6 +41,13 @@ public class CustomerServiceImp implements CustomerService {
 	public void deleteCustomer(int customerId) {
 
 		customerDao.deleteCustomer(customerId);
+	}
+
+	@Override
+	@Transactional
+	public List<Customer> searchCustomers(String searchName) {
+
+		return customerDao.searchCustomers(searchName);
 	}
 
 }
