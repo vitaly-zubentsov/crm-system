@@ -80,7 +80,14 @@
 		</div>
 
 	</div>
-
+	
+	<hr>
+	
+	<h3>REST API</h3>
+	
+	
+	<a href="${pageContext.request.contextPath}/api/customers">Get all Customers</a>
+	
 
 </body>
 
