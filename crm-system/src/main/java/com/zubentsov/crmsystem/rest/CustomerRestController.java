@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,18 +21,18 @@ import com.zubentsov.crmsystem.service.CustomerService;
 public class CustomerRestController {
 
 	@Autowired
-	private CustomerService customerServise;
+	private CustomerService customerService;
 
 	@GetMapping("/customers")
 	public List<Customer> getCustomers() {
 
-		return customerServise.getCustomers();
+		return customerService.getCustomers();
 	}
 
 	@GetMapping("/customers/{customerId}")
 	public Customer getCustomer(@PathVariable int customerId) throws Exception {
 		
-		Customer customer = customerServise.getCustomer(customerId);
+		Customer customer = customerService.getCustomer(customerId);
 		
 		if (customer == null) {
 			throw new CustomerNotFoundException("Customer id not found: " + customerId);
@@ -38,7 +40,17 @@ public class CustomerRestController {
 		return customer;
 	}
 	
-	
+	@PostMapping("/customers")
+	public Customer addCustomer(@RequestBody Customer customer) {
+		
+		//just in case the id in request body id is not empty
+		//set id to null for create customer, instead update
+		customer.setId(0);
+		
+		customerService.saveOrUpdateCustomer(customer);
+		
+		return customer;
+	}
 	
 	@ExceptionHandler
 	public ResponseEntity<CustomerErrorResponse> handleException(CustomerNotFoundException exc) {

@@ -42,7 +42,7 @@ public class CustomerController {
 	public String saveCustomer(@ModelAttribute("customer") Customer customer) {
 
 		// add customer to DB
-		customerServise.addCustomer(customer);
+		customerServise.saveOrUpdateCustomer(customer);
 
 		return "redirect:/customer/list";
 	}
